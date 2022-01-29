@@ -2,46 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
-using UnityEditor.UI;
 using UnityEngine.UI;
 using TMPro;
 
 public class Interpreter : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private TextMeshProUGUI str;
+
+    public TextAsset xmlScenario;
+
+    List<SectionDialogue> sections = new();
+
     void Start()
-    {
-        XmlDocument xDoc = new XmlDocument();
+    {        
+        XmlDocument xDoc = new();
+        xDoc.LoadXml(xmlScenario.text);    //xDoc.Load("scenario.xml");
 
-        xDoc.Load("scenario.xml");
-
-        // корневой элемент
+        //корневой элемент
         XmlElement xRoot = xDoc.DocumentElement;
-
         if (xRoot != null)
         {
-            showFullScenario(xRoot);    
+            StartNovella(xRoot);
+            str.text = sections[0].Dialogues[0].Phrases[0].PhraseText;
+            // ShowFullScenario(xRoot);
         }
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    [SerializeField] 
-     private TextMeshProUGUI str;
-
-     void showFullScenario(XmlElement xmlElement)
+    //метод вывода полного сценари€
+     void ShowFullScenario(XmlElement xmlElement)
     {
         XmlNode attr = null;
 
         if (xmlElement.Attributes != null)
             attr = xmlElement.Attributes.Item(0);
 
-        bool hasChild = (xmlElement.ChildNodes.Count != 1) ? true : false;
+        //вспомогательна€ переменна€, сообщающа€ есть ли у тэга дочерние тэги
+        bool hasChild = (xmlElement.ChildNodes.Count != 1); 
 
         if (hasChild)
         {
@@ -54,8 +51,7 @@ public class Interpreter : MonoBehaviour
             if (attr?.Value != null)
             {
                 //у фразы просто выводим значение тэга
-                if (xmlElement.Name == "phrase")
-                    
+                if (xmlElement.Name == "phrase")                    
                     str.text += "‘раза: " + xmlElement.InnerText + "; \n";
                 //у ответа выводим значение тэга и все атрибуты
                 if (xmlElement.Name == "answer")
@@ -79,8 +75,150 @@ public class Interpreter : MonoBehaviour
         }
         //спускаемс€ ниже по дереву
         if (hasChild)
-            foreach (XmlElement xeNode in xmlElement.ChildNodes) showFullScenario(xeNode);
+            foreach (XmlElement xeNode in xmlElement.ChildNodes) ShowFullScenario(xeNode);
 
+    }
+
+    /// <summary>
+    /// «аполн€ет всю информацию по Xml-файлу в список "sections"
+    /// </summary>
+    /// <param name="xmlElement"> оренневой элемент xml-файла</param>
+    void StartNovella(XmlElement xmlElement)
+    {
+        XmlNode attr = null;
+
+        if (xmlElement.Attributes != null) 
+            attr = xmlElement.Attributes.Item(0);
+
+        //вспомогательна€ переменна€, сообщающа€ есть ли у тэга дочерние тэги
+        bool hasChild = (xmlElement.ChildNodes.Count != 1);
+
+        if (hasChild)
+        {
+            //если у тэга есть атрибут, то выводим значение атрибута
+            if (attr?.Value != null)
+            {
+                //если название элемента соответствует шаблону, то создаем его экземпл€р и записываем его в лист
+                if (xmlElement.Name == "section")
+                {
+                    SectionDialogue section = new();
+                    section.SetNumber(int.Parse(attr?.Value));
+                    sections.Add(section);
+                }
+                // у диалога создаем экземпл€р и записываем к последнему добавленному элементу секции
+                if (xmlElement.Name == "dialogue")
+                {
+                    Dialogue dialogue = new();
+                    dialogue.SetNumber(int.Parse(attr?.Value));
+                    sections[^1].Dialogues.Add(dialogue);
+                }
+            }
+            //и спускаемс€ ниже по дереву
+            foreach (XmlElement xeNode in xmlElement.ChildNodes) StartNovella(xeNode);
+        }
+        else
+        {
+            if (attr?.Value != null)
+            {
+                //у фразы создаем экземпл€р и записываем к последнему добавленному диалогу
+                if (xmlElement.Name == "phrase")
+                {
+                    Phrase phrase = new();
+                    phrase.SetPhrase(xmlElement.InnerText);
+                    sections[^1].Dialogues[^1].Phrases.Add(phrase);
+                }
+                //у ответа создаем экземпл€р и записываем к последней добавленной фразе
+                if (xmlElement.Name == "answer")
+                {
+                    Answer answer = new();
+                    answer.SetAnswer(xmlElement.InnerText, int.Parse(xmlElement.Attributes["nextphrase"].InnerText), int.Parse(xmlElement.Attributes["value"].InnerText));
+                    sections[^1].Dialogues[^1].Phrases[^1].Answers.Add(answer);
+                }
+            }
+            else //если нет детей и атрибутов, то просто провер€ем, нужный ли нам это тэг и записываем его в соответствующее значение к секции
+            {
+                if (xmlElement.Name == "character")
+                {
+                   sections[^1].SetCharacter(xmlElement.InnerText);
+                }
+            }
+        }
+       
+    }
+   
+    class SectionDialogue
+    {
+        public int Number { get; private set; }
+        public string Character { get; private set; }
+        public List<Dialogue> Dialogues { get; private set; }
+        public SectionDialogue()
+        {
+            Dialogues = new List<Dialogue>();
+        }
+        public void SetNumber(int number)
+        {
+            Number = number;
+        }
+        public void SetCharacter(string character)
+        {
+            Character = character;
+        }
+        public void SetDialogues(List<Dialogue> dialogues)
+        {
+            Dialogues = dialogues;
+        }
+    }
+    class Dialogue
+    {        
+        public int Number { get; private set; }
+        public List<Phrase> Phrases { get; private set; }
+        public Dialogue()
+        {
+            Phrases = new List<Phrase>();
+        }
+        public void SetNumber(int number)
+        {
+            Number = number;
+        }       
+        public void SetPhrases(List<Phrase> phrases)
+        {
+            Phrases = phrases;
+        }
+    }
+    class Phrase
+    {       
+        public string PhraseText { get; private set; }
+        public List<Answer> Answers { get; private set; }
+        public Phrase()
+        {
+            Answers = new List<Answer>();
+        }
+        public void SetPhrase(string prase)
+        {
+             PhraseText = prase;
+        }
+        public void SetAnsweres(List<Answer> answers)
+        {
+            Answers = answers;
+        }
+    }
+    class Answer
+    {       
+        public string AnswerText { get; private set; }
+        public int Value { get; private set; }
+        public int NumNextPhrase { get; private set; }
+        public void SetAnswer(string answer, int value, int numNextPhrase)
+        {
+            AnswerText = answer;
+            Value = value;
+            NumNextPhrase = numNextPhrase;
+        }
+    }
+    public class Character
+    {
+       
+        public string Name { get; private set; }
+        public Image[] Reaction { get; private set; }
     }
 
 }

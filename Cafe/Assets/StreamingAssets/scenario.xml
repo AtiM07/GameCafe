@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?xml-stylesheet type="text/css" href="style.css"?>
 <root>
-    <section part="1">
+    <section part="Глава 1">
         <background>ссылка</background>
         <song>музыка</song>
         <character>фея</character>
-        <dialogue num="1">
-          <phrase num="1" >Здравствуйте!</phrase>
-            <answer value="-1" nextphrase="0">Хай,пипл</answer>
+        <dialogue num="Диалог 1">
+          <phrase num ="1" >Здравствуйте!</phrase>
+            <answer value="-1" nextphrase="?">Хай,пипл</answer>
             <answer value="0" nextphrase="2">Здравствуйте</answer>
             <answer value="1" nextphrase="2">Здравствуйте, рады вас приветствовать!</answer>
           
           <phrase num ="2" >С праздником!</phrase>
-          <answer value="-1" nextphrase="0">*молчание*</answer>
+          <answer value="-1" nextphrase="?">*молчание*</answer>
           <answer value="0" nextphrase="2">Спасибо</answer>
           <answer value="1" nextphrase="2">Спасибо и вас тоже!</answer>
         
       </dialogue>
-        <dialogue num="2">
-          <phrase num="1" >Можно меню?</phrase>
-            <answer value="-1" nextphrase="0">Сама возьми</answer>
+        <dialogue num="Диалог 2">
+          <phrase num ="1" >Можно меню?</phrase>
+            <answer value="-1" nextphrase="?">Сама возьми</answer>
             <answer value="0" nextphrase="2">*молча отдает*</answer>
             <answer value="1" nextphrase="2">Да, конечно. Одну секунду. *отдает меню*</answer>
         </dialogue>
     </section>
-    <section part="2">
+    <section part="Глава 2">
       <background>ссылочка</background>
       <song>музычка</song>
       <character>феечка</character>
-          <dialogue num="1">
-            <phrase num="1">Здравствуйте!</phrase>
-            <answer value="-1" nextphrase="0">Хай</answer>
-            <answer value="0" nextphrase="0">Привет</answer>
-            <answer value="1" nextphrase="0">Здравствуйте!</answer>
+          <dialogue num="Диалог 1">
+            <phrase num ="1">Здравствуйте!</phrase>
+            <answer value="-1" >Хай</answer>
+            <answer value="0">Привет</answer>
+            <answer value="1">Здравствуйте!</answer>
           </dialogue>
-          <dialogue num="2">
+          <dialogue num="Диалог 2">
             <phrase num ="2" >Можно меню?</phrase>
-            <answer value="-1" nextphrase="0">Ага, ща</answer>
-            <answer value="0" nextphrase="0">*молча отет*</answer>
-            <answer value="1" nextphrase="0">Да, конечно</answer>
+            <answer value="-1" nxtphr="?">Ага, ща</answer>
+            <answer value="0" nxtphr="2">*молча отет*</answer>
+            <answer value="1" nxtphr="2">Да, конечно</answer>
           </dialogue>
     
   </section>
