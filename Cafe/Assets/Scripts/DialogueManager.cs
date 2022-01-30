@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     GameObject[] answer;
     int numSection, numDialogue;
     Interpreter.Answer[] answers;
+
     void Start()
     {
         phraseCharText = GameObject.Find("phraseCharText").GetComponent<TextMeshProUGUI>();
@@ -26,6 +27,10 @@ public class DialogueManager : MonoBehaviour
         numSection = 0;
         numDialogue = 0;
     }
+
+    /// <summary>
+    /// Запуск. Выбор рандомной секции новеллы с дальнейшим отображением диалога
+    /// </summary>
     public void Init()
     {
         numSection = Random.Range(0, Interpreter.Instance.sections.Count-1);
@@ -33,6 +38,10 @@ public class DialogueManager : MonoBehaviour
         answer = GameObject.FindGameObjectsWithTag("Answer");
         NovellaGenerate();
     }
+
+    /// <summary>
+    /// Вспомогательный метод для начальной генерации новеллы 
+    /// </summary>
     public void NovellaGenerate()
     {
         Interpreter.SectionDialogue section = Interpreter.Instance.sections[numSection];
@@ -43,6 +52,10 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Отображение диалога (фразы персонажа и вариантов ответа пользователя)
+    /// </summary>
+    /// <param name="dialogue"> Номер диалога, который неоходимо отобразить </param>
     public void DialogueGenerate(Interpreter.Dialogue dialogue)
     {
         phraseCharText.text = dialogue.Phrases[0].PhraseText;

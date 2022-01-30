@@ -35,7 +35,7 @@ public class Interpreter : MonoBehaviour
         {
             StartNovella(xRoot);
             // ShowFullScenario(xRoot);
-            DialogueManager.Instance.Init();
+            DialogueManager.Instance.Init(); 
         }
     }
 
