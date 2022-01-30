@@ -7,15 +7,25 @@ using TMPro;
 
 public class Interpreter : MonoBehaviour
 {
+    public static Interpreter Instance;
+    public List<SectionDialogue> sections { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+    public Interpreter()
+    {
+        sections = new();
+    }
+    
     [SerializeField]
     private TextMeshProUGUI str;
 
-    public TextAsset xmlScenario;
-
-    List<SectionDialogue> sections = new();
+    public TextAsset xmlScenario;   
 
     void Start()
-    {        
+    {
         XmlDocument xDoc = new();
         xDoc.LoadXml(xmlScenario.text);    //xDoc.Load("scenario.xml");
 
@@ -24,8 +34,8 @@ public class Interpreter : MonoBehaviour
         if (xRoot != null)
         {
             StartNovella(xRoot);
-            str.text = sections[0].Dialogues[0].Phrases[0].PhraseText;
             // ShowFullScenario(xRoot);
+            DialogueManager.Instance.Init();
         }
     }
 
@@ -146,7 +156,7 @@ public class Interpreter : MonoBehaviour
        
     }
    
-    class SectionDialogue
+    public class SectionDialogue
     {
         public int Number { get; private set; }
         public string Character { get; private set; }
@@ -168,7 +178,7 @@ public class Interpreter : MonoBehaviour
             Dialogues = dialogues;
         }
     }
-    class Dialogue
+    public class Dialogue
     {        
         public int Number { get; private set; }
         public List<Phrase> Phrases { get; private set; }
@@ -185,7 +195,7 @@ public class Interpreter : MonoBehaviour
             Phrases = phrases;
         }
     }
-    class Phrase
+    public class Phrase
     {       
         public string PhraseText { get; private set; }
         public List<Answer> Answers { get; private set; }
@@ -202,7 +212,7 @@ public class Interpreter : MonoBehaviour
             Answers = answers;
         }
     }
-    class Answer
+    public class Answer
     {       
         public string AnswerText { get; private set; }
         public int Value { get; private set; }
