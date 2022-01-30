@@ -4,11 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.VectorGraphics;
+using UnityEngine.SceneManagement;
+
 class UIManager : MonoBehaviour
 {
     public Animator contentPanel;
+    public Toggle soundToggle;
+
+    //изображения для меню
     public SVGImage menuImg;
     public SVGImage hideImg;
+
+    //изображения для звука
+    public SVGImage muteImg;
+    public SVGImage volImg;
+
+    //изображения для иконки текущей игры
+    public SVGImage gameImg;
+    public SVGImage novImg;
 
     void Start()
     {
@@ -18,6 +31,8 @@ class UIManager : MonoBehaviour
         Vector2 position = transform.anchoredPosition;
         position.y += transform.rect.height;
         transform.anchoredPosition = position;
+
+        ToggleGame();
     }
 
     /// <summary>
@@ -41,7 +56,6 @@ class UIManager : MonoBehaviour
     {        
         if (isHidden)
         {
-
             yield return new WaitForSeconds(1f);
 
             hideImg.gameObject.SetActive(isHidden);
@@ -56,6 +70,36 @@ class UIManager : MonoBehaviour
             menuImg.gameObject.SetActive(!isHidden);
         }
        
+    }
+
+    /// <summary>
+    /// Включение/выключение звукового сопровождения 
+    /// </summary>
+    public void ToggleSound()
+    { 
+        muteImg.gameObject.SetActive(!soundToggle.isOn);
+        volImg.gameObject.SetActive(soundToggle.isOn);
+
+        //добавить отключение/включение звука
+    }
+
+    /// <summary>
+    /// Переход между играми 
+    /// </summary>
+    public void ToggleGame()
+    {
+        if (SceneManager.GetActiveScene().name == "NovellaScene")
+        {
+            gameImg.gameObject.SetActive(false);
+            novImg.gameObject.SetActive(true);
+        }
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            novImg.gameObject.SetActive(false);
+            gameImg.gameObject.SetActive(true);
+        }
+
+        //добавить переход на другую игру
     }
 
     /// <summary>

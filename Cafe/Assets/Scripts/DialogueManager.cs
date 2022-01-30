@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Xml;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,8 +17,17 @@ public class DialogueManager : MonoBehaviour
 
     TextMeshProUGUI phraseCharText;
     TextMeshProUGUI nameCharText;
+
+    /// <summary>
+    /// Хранение кнопок с ответами
+    /// </summary>
     GameObject[] answer;
+
     int numSection, numDialogue;
+
+    /// <summary>
+    /// Хранение текущего списка ответов
+    /// </summary>
     Interpreter.Answer[] answers;
 
     void Start()
@@ -48,25 +58,76 @@ public class DialogueManager : MonoBehaviour
 
         nameCharText.text = section.Character;          
 
-        DialogueGenerate(section.Dialogues[numDialogue]);
+        DialogueGenerate(section.Dialogues[numDialogue].Phrases[0]);
         
     }
 
     /// <summary>
     /// Отображение диалога (фразы персонажа и вариантов ответа пользователя)
     /// </summary>
-    /// <param name="dialogue"> Номер диалога, который неоходимо отобразить </param>
-    public void DialogueGenerate(Interpreter.Dialogue dialogue)
+    /// <param name="phrases"> Номер диалога, который неоходимо отобразить </param>
+    public void DialogueGenerate(Interpreter.Phrase phrases)
     {
-        phraseCharText.text = dialogue.Phrases[0].PhraseText;
+        phraseCharText.text = phrases.PhraseText;
 
-        answers = new Interpreter.Answer[dialogue.Phrases[0].Answers.Count];
+        answers = new Interpreter.Answer[phrases.Answers.Count];
         int a = 0;
-        foreach (Interpreter.Answer ans in dialogue.Phrases[0].Answers)
+        foreach (Interpreter.Answer ans in phrases.Answers)
         {
             answers[a] = ans;
-            answer[a].GetComponent<TextMeshProUGUI>().text += answers[a].AnswerText + "\n";
+            answer[a].GetComponentInChildren<TextMeshProUGUI>().text = answers[a].AnswerText; //answer[a].GetComponent<TextMeshProUGUI>().text += answers[a].AnswerText + "\n";
             a++;
         }
+    }
+
+    /// <summary>
+    /// Проверка выбранного пользователем варианта ответа и соответствующие ответу дальнейшие действия
+    /// </summary>
+    public void CheckAnswer()
+    {
+        TextMeshProUGUI currAnswer = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>();        
+        
+        for (int i=0; i< answers.Length;i++)
+        {
+            if (currAnswer.text == answers[i].AnswerText)
+            {                
+                if (answers[i].NumNextPhrase != 0)
+                {
+                    AnswerResult(answers[i].NumNextPhrase-1);
+                    return;
+                }
+                else //вывод результата игры
+                {
+                    ResultGame();
+                    return;
+                }
+               
+            }
+        }
+    }
+
+    void AnswerResult(int numPhrases)
+    {
+        StartCoroutine(animBtnAnswer());
+        DialogueGenerate(Interpreter.Instance.sections[numSection].Dialogues[numDialogue].Phrases[numPhrases]);
+        //смена иконки персонажа + результат
+    }
+
+    IEnumerator animBtnAnswer()
+    {
+        foreach(GameObject a in answer)
+        {           
+            a.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }
+        yield return null;
+    }
+
+    void ResultGame()
+    {
+        phraseCharText.text = "Игра закончена";
+        foreach (GameObject a in answer)
+            a.GetComponentInChildren<TextMeshProUGUI>().text = "";
+
+        //вывод результата прохождения новеллы
     }
 }

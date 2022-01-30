@@ -141,7 +141,7 @@ public class Interpreter : MonoBehaviour
                 if (xmlElement.Name == "answer")
                 {
                     Answer answer = new();
-                    answer.SetAnswer(xmlElement.InnerText, int.Parse(xmlElement.Attributes["nextphrase"].InnerText), int.Parse(xmlElement.Attributes["value"].InnerText));
+                    answer.SetAnswer(xmlElement.InnerText, int.Parse(xmlElement.Attributes["value"].InnerText), int.Parse(xmlElement.Attributes["nextphrase"].InnerText));
                     sections[^1].Dialogues[^1].Phrases[^1].Answers.Add(answer);
                 }
             }
