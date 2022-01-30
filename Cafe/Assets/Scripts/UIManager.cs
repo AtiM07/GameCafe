@@ -10,6 +10,7 @@ class UIManager : MonoBehaviour
 {
     public Animator contentPanel;
     public Toggle soundToggle;
+    public GameObject rulesPanel;
 
     //изображения для меню
     public SVGImage menuImg;
@@ -31,6 +32,7 @@ class UIManager : MonoBehaviour
         Vector2 position = transform.anchoredPosition;
         position.y += transform.rect.height;
         transform.anchoredPosition = position;
+        rulesPanel.SetActive(false);
 
         ToggleGame();
     }
@@ -100,6 +102,21 @@ class UIManager : MonoBehaviour
         }
 
         //добавить переход на другую игру
+    }
+
+    /// <summary>
+    /// Активирует панель с правилами игры
+    /// </summary>
+    public void ToggleHelp()
+    {
+        rulesPanel.SetActive(true);
+    }
+    /// <summary>
+    /// Активирует панель с правилами игры
+    /// </summary>
+    public void CloseRulesPanel()
+    {
+        rulesPanel.SetActive(false);
     }
 
     /// <summary>
