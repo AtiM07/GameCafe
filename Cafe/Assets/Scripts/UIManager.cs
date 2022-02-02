@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.VectorGraphics;
 using UnityEngine.SceneManagement;
 
 class UIManager : MonoBehaviour
@@ -13,16 +12,16 @@ class UIManager : MonoBehaviour
     public GameObject rulesPanel;
 
     //изображения для меню
-    public SVGImage menuImg;
-    public SVGImage hideImg;
+    public Image menuImg;
+    public Image hideImg;
 
     //изображения для звука
-    public SVGImage muteImg;
-    public SVGImage volImg;
+    public Image muteImg;
+    public Image volImg;
 
     //изображения для иконки текущей игры
-    public SVGImage gameImg;
-    public SVGImage novImg;
+    public Image gameImg;
+    public Image novImg;
 
     void Start()
     {
