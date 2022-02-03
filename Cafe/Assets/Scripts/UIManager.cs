@@ -12,16 +12,18 @@ class UIManager : MonoBehaviour
     public GameObject rulesPanel;
 
     //изображения для меню
-    public Image menuImg;
-    public Image hideImg;
+    public Image menu;
+    public Sprite menuImg;
+    public Sprite hideImg;
 
     //изображения для звука
-    public Image muteImg;
-    public Image volImg;
+    public Sprite volImg;
+    public Sprite muteImg;
 
     //изображения для иконки текущей игры
-    public Image gameImg;
-    public Image novImg;
+    public Image game;
+    public Sprite gameImg;
+    public Sprite novImg;
 
     void Start()
     {
@@ -59,16 +61,18 @@ class UIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
 
-            hideImg.gameObject.SetActive(isHidden);
-            menuImg.gameObject.SetActive(!isHidden);
+            menu.sprite = hideImg;
+            //hideImg.gameObject.SetActive(isHidden);
+            //menuImg.gameObject.SetActive(!isHidden);
 
             yield return new WaitForSeconds(1.2f);
         }
         else
         {
             yield return new WaitForSeconds(1.2f);
-            hideImg.gameObject.SetActive(isHidden);
-            menuImg.gameObject.SetActive(!isHidden);
+            menu.sprite = menuImg;
+            //hideImg.gameObject.SetActive(isHidden);
+            //menuImg.gameObject.SetActive(!isHidden);
         }
        
     }
@@ -78,8 +82,14 @@ class UIManager : MonoBehaviour
     /// </summary>
     public void ToggleSound()
     { 
-        muteImg.gameObject.SetActive(!soundToggle.isOn);
-        volImg.gameObject.SetActive(soundToggle.isOn);
+        if (soundToggle.isOn)
+        {
+            soundToggle.gameObject.GetComponent<Image>().sprite = volImg;
+        }
+        else
+        {
+            soundToggle.gameObject.GetComponent<Image>().sprite = muteImg;
+        }
 
         //добавить отключение/включение звука
     }
@@ -91,13 +101,11 @@ class UIManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "NovellaScene")
         {
-            gameImg.gameObject.SetActive(false);
-            novImg.gameObject.SetActive(true);
+            game.sprite = novImg;
         }
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
-            novImg.gameObject.SetActive(false);
-            gameImg.gameObject.SetActive(true);
+            game.sprite = gameImg;
         }
 
         //добавить переход на другую игру

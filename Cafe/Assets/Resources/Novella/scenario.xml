@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<root>
+    <section part="1">
+        <background>ссылка</background>
+        <song>музыка</song>
+        <character name="Fairy">Фея леса</character>
+        <dialogue num="1">
+          <phrase num="1" >Здравствуйте!</phrase>
+              <answer value="-1" nextphrase="4">Хай</answer>
+              <answer value="0" nextphrase="2">Здравствуйте</answer>
+              <answer value="1" nextphrase="2">Здравствуйте, рады вас приветствовать!</answer>
+          
+          <phrase num ="2">У вас есть свободные столики для двоих?</phrase>
+              <answer value="-1" nextphrase="4">А сами не видите?</answer>
+              <answer value="0" nextphrase="3">Да, проходите</answer>
+              <answer value="1" nextphrase="3">Да, конечно. *проводит до столика*</answer>
+          
+          <phrase num ="3">Мы бы хотели заказать две чашки черного чая и вишневый пирог.</phrase>
+              <answer value="-1" nextphrase="4">Ок</answer>
+              <answer value="0" nextphrase="0">Принято</answer>
+              <answer value="1" nextphrase="0">Да, конечно. Ваш заказ будет готов через 10 минут</answer>
+
+          <phrase num="4">Вам бы, желательно, подтянуть свои манеры. Мы пойдем</phrase>
+              <answer value="0" nextphrase="0">Ок</answer>
+              <answer value="1" nextphrase="0">Извините</answer>
+              <answer value="0" nextphrase="0">Выход там</answer>
+        </dialogue>
+        <dialogue num="2">
+          <phrase num="1" >Можно меню?</phrase>
+            <answer value="-1" nextphrase="0">Сама возьми</answer>
+            <answer value="0" nextphrase="0">*молча отдает*</answer>
+            <answer value="1" nextphrase="0">Да, конечно. Одну секунду. *отдает меню*</answer>
+        </dialogue>
+    </section>
+    <section part="2">
+      <background>ссылочка</background>
+      <song>музычка</song>
+      <character name="Elf">Светлый эльф</character>
+          <dialogue num="1">
+            <phrase num="1">Здравствуйте!</phrase>
+            <answer value="-1" nextphrase="0">Хай</answer>
+            <answer value="0" nextphrase="0">Привет</answer>
+            <answer value="1" nextphrase="0">Здравствуйте!</answer>
+          </dialogue>
+          <dialogue num="2">
+            <phrase num ="2" >Можно меню?</phrase>
+            <answer value="-1" nextphrase="0">Ага, ща</answer>
+            <answer value="0" nextphrase="0">*молча отет*</answer>
+            <answer value="1" nextphrase="0">Да, конечно</answer>
+          </dialogue>
+    
+  </section>
+</root>
