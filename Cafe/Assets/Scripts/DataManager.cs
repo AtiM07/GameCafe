@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
@@ -25,7 +26,8 @@ public class DataManager : ScriptableObject
 	public void Init()
 	{
 		XmlDocument xDoc = new();
-		xDoc.Load(Application.dataPath + "/Resources/Novella/scenario.xml");
+		TextAsset textAsset = (TextAsset)Resources.Load("Novella/scenario");
+		xDoc.LoadXml(textAsset.text);
 
 		XmlElement xRoot = xDoc.DocumentElement;
 		if (xRoot != null)
