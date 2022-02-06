@@ -4,12 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+
+    }
     public Animator contentPanel;
     public Toggle soundToggle;
     public GameObject rulesPanel;
+    public GameObject resultPanel;
 
     //изображения для меню
     public Image menu;
@@ -119,11 +128,36 @@ class UIManager : MonoBehaviour
         rulesPanel.SetActive(true);
     }
     /// <summary>
-    /// Активирует панель с правилами игры
+    /// Деактивирует панель c правилами игры
     /// </summary>
-    public void CloseRulesPanel()
+    public void ClosePanel()
     {
         rulesPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// Деактивирует панель
+    /// </summary>
+    private void ClosePanel(GameObject gameObj)
+    {
+        gameObj.SetActive(false);
+    }
+
+    /// <summary>
+    /// Выводит результат новеллы
+    /// </summary>
+    public void ResultPanel(GameObject resPanel)
+    {
+        resultPanel = resPanel;
+        resultPanel.SetActive(true);
+        resultPanel.GetComponentInChildren<Transform>().Find("resultTxt").GetComponent<TextMeshProUGUI>().text = "Счет игры: " +  DialogueManager.Instance.resultPoint.ToString();
+        //вывод результата игры
+    }
+
+    public void RestartGame()
+    {
+        DialogueManager.Instance.Init();
+        ClosePanel(resultPanel);
     }
 
     /// <summary>

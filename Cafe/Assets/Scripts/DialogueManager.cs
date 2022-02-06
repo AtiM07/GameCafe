@@ -16,13 +16,16 @@ public class DialogueManager : MonoBehaviour
     }
     public TextMeshProUGUI phraseCharText ;
     public TextMeshProUGUI nameCharText;
+    public GameObject resultPanel;
+    public int resultPoint;
+
 
     /// <summary>
     /// Хранение кнопок с ответами
     /// </summary>
     GameObject[] answer, background;
     ///
-    int numSection, numDialogue, numPhrase;
+    int numSection =0, numDialogue=0, numPhrase=0;
 
     /// <summary>
     /// Запуск. Выбор рандомной секции новеллы с дальнейшим отображением диалога
@@ -34,11 +37,11 @@ public class DialogueManager : MonoBehaviour
         answer = GameObject.FindGameObjectsWithTag("Answer");
         GameObject.Find("background").GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("Novella/background");
 
-        numSection = Random.Range(0, Interpreter.Instance.GetSection().Count-1);
-        numDialogue = Random.Range(0, Interpreter.Instance.GetDialogue(numSection).Count-1);
+        numSection = Random.Range(0, Interpreter.Instance.GetSection().Count);
+        numDialogue = Random.Range(0, Interpreter.Instance.GetDialogue(numSection).Count);
 
         nameCharText.text = Interpreter.Instance.GetSection(numSection).character.name;
-        numPhrase = 0;
+        numPhrase = 0; resultPoint = 0;
         DialogueGenerate();
     }
 
@@ -64,23 +67,29 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < answer.Length; i++)
         {
-            if (currAnswer.text == Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase, i).answer)
+            DataManager.Answer answer = Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase, i);
+            if (currAnswer.text == answer.answer)
             {
-                if (Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase, i).nextphrase != 0)
+
+                Sum(answer.value);
+                if (answer.nextphrase != 0)
                 {
-                    AnswerResult(Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase, i).nextphrase - 1);
+                    AnswerResult(answer.nextphrase - 1);
                     return;
                 }
                 else //вывод результата игры
                 {
-                    ResultGame();
+                    UIManager.Instance.ResultPanel(resultPanel);
                     return;
                 }
 
             }
         }
     }
-
+    private void Sum(int value)
+    {
+        resultPoint += value;
+    }
     /// <summary>
     /// Реакция на правильный ответ пользователя
     /// </summary>
@@ -102,12 +111,4 @@ public class DialogueManager : MonoBehaviour
         yield return null;
     }
 
-    void ResultGame()
-    {
-        phraseCharText.text = "Игра закончена";
-        foreach (GameObject a in answer)
-            a.GetComponentInChildren<TextMeshProUGUI>().text = "";
-
-        //вывод результата прохождения новеллы
-    }
 }

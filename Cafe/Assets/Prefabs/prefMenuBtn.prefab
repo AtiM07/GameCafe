@@ -514,10 +514,10 @@ MonoBehaviour:
   contentPanel: {fileID: 2277364966783576274}
   soundToggle: {fileID: 7086631090089095104}
   rulesPanel: {fileID: 3445566893264508215}
+  resultPanel: {fileID: 0}
   menu: {fileID: 5012817837350705966}
   menuImg: {fileID: 21300000, guid: 1cc2b4261afe60a42aadecafe2760a83, type: 3}
   hideImg: {fileID: 21300000, guid: f1447dda1117b264b972324d9a94daf7, type: 3}
-  volum: {fileID: 5504182097793078010}
   volImg: {fileID: 21300000, guid: 3a37993b0f6e0094bba5a2b77149b601, type: 3}
   muteImg: {fileID: 21300000, guid: 192818bcdbbb1f94ba00c49e06a3b48f, type: 3}
   game: {fileID: 239888059967736701}
@@ -1136,7 +1136,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5670707806671977660}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: CloseRulesPanel
+        m_MethodName: ClosePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

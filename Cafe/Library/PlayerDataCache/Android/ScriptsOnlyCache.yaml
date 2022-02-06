@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
@@ -41,9 +42,11 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.Mask
     - UnityEngine.UI.Toggle
+    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/NovellaScene.unity:
     - Class: 1
@@ -91,6 +94,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4986}
     - Class: 114
+      Script: {instanceID: 5756}
+    - Class: 114
       Script: {instanceID: 5846}
     - Class: 114
       Script: {instanceID: 6144}
@@ -100,6 +105,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6740}
     - Class: 114
       Script: {instanceID: 7134}
+    - Class: 114
+      Script: {instanceID: 7654}
     - Class: 114
       Script: {instanceID: 8952}
     - Class: 115
@@ -381,7 +388,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: fb4a7c5d5e0ed14adf551a4f37407695
+      Hash: 98dd8206e506598927477c5eb71b824a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -717,7 +724,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: f58967210daacab69e2ccbc22cd3ca24
+      Hash: e251e6a588dd3b9d67dbae42bc1683fc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogueManager
