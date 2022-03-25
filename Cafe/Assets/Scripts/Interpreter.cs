@@ -16,12 +16,12 @@ public class Interpreter : MonoBehaviour
 
     }
 
-    [SerializeField]
-    private DataManager data;
 
     [SerializeField]
     private Image img;
 
+    [SerializeField]
+    private DataManager data;
     private static DataManager isData
     {
         get { return Instance.data; }

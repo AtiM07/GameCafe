@@ -19,7 +19,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject resultPanel;
     public int resultPoint;
 
-
     /// <summary>
     /// Хранение кнопок с ответами
     /// </summary>
@@ -90,6 +89,7 @@ public class DialogueManager : MonoBehaviour
     {
         resultPoint += value;
     }
+
     /// <summary>
     /// Реакция на правильный ответ пользователя
     /// </summary>

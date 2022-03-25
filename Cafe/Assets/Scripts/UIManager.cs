@@ -71,8 +71,6 @@ class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             menu.sprite = hideImg;
-            //hideImg.gameObject.SetActive(isHidden);
-            //menuImg.gameObject.SetActive(!isHidden);
 
             yield return new WaitForSeconds(1.2f);
         }
@@ -80,8 +78,6 @@ class UIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1.2f);
             menu.sprite = menuImg;
-            //hideImg.gameObject.SetActive(isHidden);
-            //menuImg.gameObject.SetActive(!isHidden);
         }
        
     }
