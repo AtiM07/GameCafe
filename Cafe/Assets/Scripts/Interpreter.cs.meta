@@ -4,8 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - str: {instanceID: 0}
-  - xmlScenario: {fileID: 4900000, guid: d0660f881fcf0d849b3fe4c1606d9e99, type: 3}
+  - img: {instanceID: 0}
+  - data: {fileID: 11400000, guid: 6eafcfc1655af8e4e8453e3c88bdf9ec, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

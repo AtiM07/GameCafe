@@ -4,70 +4,75 @@ using UnityEngine;
 using System.Xml;
 using UnityEngine.UI;
 using TMPro;
-
-
-public class Interpreter : MonoBehaviour
+using DMData;
+public class Interpreter : Singleton<Interpreter>
 {
-    public static Interpreter Instance;
-    void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-
-    }
-
-
-    [SerializeField]
-    private Image img;
-
     [SerializeField]
     private DataManager data;
-    private static DataManager isData
+    private static DataManager IsData
     {
         get { return Instance.data; }
     }
     void Start()
     {
         //new DataManager().Init();
-        data = ScriptableObject.CreateInstance<DataManager>();
-        data.Init();
+        //data = ScriptableObject.CreateInstance<DataManager>();
+        //data.Init();
+        
         DialogueManager.Instance.Init();
         //img.sprite = data.Sections[0].character.sprite[0];
     }
+    private void Awake()
+    {
+        Load();
+    }
 
+    public void Save()
+    {
+        JsonController.InternalSaveJSON(DataPath, data);
+    }
+
+    private const string DataPath = "DMData.bin";
+    public void Load()
+    {
+        data = Instantiate(data);
+        //data.Init();
+        data = JsonController.PopulateJSON(DataPath, data);
+        Save();
+    }
     public List<DataManager.Section> GetSection()
     {
-        return  isData.Sections;
+        return  IsData.Sections;
     }
     public DataManager.Section GetSection(int numSection)
     {
-        return isData.Sections[numSection];
+        return IsData.Sections[numSection];
     }
     public List<DataManager.Dialogue> GetDialogue(int numSection)
     {
-        return isData.Sections[numSection].dialogues;
+        return IsData.Sections[numSection].dialogues;
     }
     public DataManager.Dialogue GetDialogue(int numSection, int numDialogue)
     {
-        return isData.Sections[numSection].dialogues[numDialogue];
+        return IsData.Sections[numSection].dialogues[numDialogue];
     }
 
     public List<DataManager.Phrase> GetPhrase(int numSection, int numDialogue)
     {
-        return isData.Sections[numSection].dialogues[numDialogue].phrases;
+        return IsData.Sections[numSection].dialogues[numDialogue].phrases;
     }
     public DataManager.Phrase GetPhrase(int numSection, int numDialogue, int numPhrase)
     {
-        return isData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase];
+        return IsData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase];
     }
 
     public List<DataManager.Answer> GetAnswer(int numSection, int numDialogue, int numPhrase)
     {
-        return isData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase].answers;
+        return IsData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase].answers;
     }
     public DataManager.Answer GetAnswer(int numSection, int numDialogue, int numPhrase, int numAnswer)
     {
-        return isData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase].answers[numAnswer];
+        return IsData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase].answers[numAnswer];
     }
 
 }

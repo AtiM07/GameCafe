@@ -112,7 +112,6 @@ class UIManager : MonoBehaviour
         {
             game.sprite = gameImg;
         }
-
         //добавить переход на другую игру
     }
 

@@ -14,32 +14,38 @@ public class DialogueManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
-    public TextMeshProUGUI phraseCharText ;
-    public TextMeshProUGUI nameCharText;
-    public GameObject resultPanel;
+
+    [SerializeField]
+     TextMeshProUGUI phraseText;
+
+    [SerializeField]
+     TextMeshProUGUI nameText;
+
+    [SerializeField]
+     GameObject resultPanel;
+
     public int resultPoint;
 
     /// <summary>
     /// Хранение кнопок с ответами
-    /// </summary>
-    GameObject[] answer, background;
-    ///
-    int numSection =0, numDialogue=0, numPhrase=0;
+    /// </summary>/ 
+    [SerializeField]
+    GameObject[] answer;
+
+    [SerializeField] 
+    GameObject background;
+
+    int numSection=0, numDialogue=0, numPhrase=0;
 
     /// <summary>
     /// Запуск. Выбор рандомной секции новеллы с дальнейшим отображением диалога
     /// </summary>
     public void Init()
     {
-        phraseCharText = GameObject.Find("phraseCharText").GetComponent<TextMeshProUGUI>();
-        nameCharText = GameObject.Find("nameCharText").GetComponent<TextMeshProUGUI>();
-        answer = GameObject.FindGameObjectsWithTag("Answer");
-        GameObject.Find("background").GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("Novella/background");
-
         numSection = Random.Range(0, Interpreter.Instance.GetSection().Count);
         numDialogue = Random.Range(0, Interpreter.Instance.GetDialogue(numSection).Count);
 
-        nameCharText.text = Interpreter.Instance.GetSection(numSection).character.name;
+        nameText.text = Interpreter.Instance.GetSection(numSection).character.name;
         numPhrase = 0; resultPoint = 0;
         DialogueGenerate();
     }
@@ -49,7 +55,7 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void DialogueGenerate()
     {        
-        phraseCharText.text = Interpreter.Instance.GetPhrase(numSection, numDialogue, numPhrase).phrase;
+        phraseText.text = Interpreter.Instance.GetPhrase(numSection, numDialogue, numPhrase).phrase;
 
         for (int i = 0; i < Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase).Count; i++)
         {
@@ -66,7 +72,7 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < answer.Length; i++)
         {
-            DataManager.Answer answer = Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase, i);
+            DMData.DataManager.Answer answer = Interpreter.Instance.GetAnswer(numSection, numDialogue, numPhrase, i);
             if (currAnswer.text == answer.answer)
             {
 
@@ -85,6 +91,11 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Счетчик баллов после выбора ответа на фразу посетителя кафе
+    /// </summary>
+    /// <param name="value">балл за ответ</param>
     private void Sum(int value)
     {
         resultPoint += value;
@@ -96,13 +107,16 @@ public class DialogueManager : MonoBehaviour
     /// <param name="numPhrases">Следующая фраза</param>
     void AnswerResult(int numPhrases)
     {
-        StartCoroutine(animBtnAnswer());
+        StartCoroutine(AnimBtnAnswer());
         numPhrase = numPhrases;
         DialogueGenerate();
         //смена иконки персонажа + результат
     }
 
-    IEnumerator animBtnAnswer()
+    /// <summary>
+    /// Обнуление текста ответов
+    /// </summary>
+    IEnumerator AnimBtnAnswer()
     {
         foreach(GameObject a in answer)
         {           

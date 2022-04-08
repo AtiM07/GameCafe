@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Answer
   - Background
+  - Cell
   layers:
   - Default
   - TransparentFX
