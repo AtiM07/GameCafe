@@ -39,7 +39,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
                     {
                         singleton = new GameObject();
                         _instance = singleton.AddComponent<T>();
-
                     }
 
                     DontDestroyOnLoad(singleton);

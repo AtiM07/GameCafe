@@ -3,7 +3,7 @@
   "Assemblies": [
     {
       "FullName": "Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-02-03T10:42:40.2578113Z"
+      "LastWriteTime": "2022-05-26T13:50:23.5766742Z"
     },
     {
       "FullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
@@ -15,11 +15,7 @@
     },
     {
       "FullName": "Unity.2D.Animation.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-02-03T10:42:40.2047222Z"
-    },
-    {
-      "FullName": "Unity.2D.Common.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-02-03T10:42:40.2009521Z"
+      "LastWriteTime": "2022-05-26T13:50:23.5576654Z"
     },
     {
       "FullName": "UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -31,19 +27,19 @@
     },
     {
       "FullName": "Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-02-03T10:42:40.2392878Z"
+      "LastWriteTime": "2022-05-26T13:50:23.5537464Z"
     },
     {
-      "FullName": "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-      "LastWriteTime": "2022-01-05T19:13:16Z"
-    },
-    {
-      "FullName": "Unity.2D.SpriteShape.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-02-03T10:42:40.2257939Z"
+      "FullName": "Unity.2D.Common.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "LastWriteTime": "2022-05-26T13:50:23.5508009Z"
     },
     {
       "FullName": "mscorlib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
       "LastWriteTime": "2022-01-05T19:13:16Z"
+    },
+    {
+      "FullName": "Unity.2D.SpriteShape.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "LastWriteTime": "2022-05-26T13:50:23.5522449Z"
     },
     {
       "FullName": "UnityEngine.SpriteShapeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -69,31 +65,13 @@
       "LinkName": "7D2E04AB7759F565",
       "AssemblyDependencyIndices": [
         3,
+        2,
         4,
         5,
-        2,
         6,
-        7,
         1,
         0,
-        8
-      ]
-    },
-    {
-      "FullName": "UnityEditor.U2D.Animation.TriangulationUtility, Unity.2D.Animation.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::SubdivideBurst(Unity.Collections.Allocator, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.int2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.float2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32*, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.int2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.int3*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)",
-      "ModuleOptionsHash": 8518222010799602013,
-      "ModuleHash": "3adc3f3ab6c3705e5ebfe00275ec189b",
-      "LinkName": "4E9252389FAD9FEE",
-      "AssemblyDependencyIndices": [
-        3,
-        2,
-        7,
-        6,
-        0,
-        1,
-        4,
-        5,
-        8
+        7
       ]
     },
     {
@@ -103,6 +81,7 @@
       "LinkName": "801E9A000BB37B05",
       "AssemblyDependencyIndices": [
         0,
+        8,
         1,
         2
       ]
@@ -113,15 +92,29 @@
       "ModuleHash": "bc9ea516d15d0d89178b7dc09d0af492",
       "LinkName": "104599FDEEB36FAE",
       "AssemblyDependencyIndices": [
-        6,
+        5,
         9,
         10,
-        11,
         2,
         1,
+        6,
+        7
+      ]
+    },
+    {
+      "FullName": "UnityEditor.U2D.Animation.TriangulationUtility, Unity.2D.Animation.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::SubdivideBurst(Unity.Collections.Allocator, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.int2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.float2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32*, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.int2*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.int3*, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)",
+      "ModuleOptionsHash": 8518222010799602013,
+      "ModuleHash": "3adc3f3ab6c3705e5ebfe00275ec189b",
+      "LinkName": "4E9252389FAD9FEE",
+      "AssemblyDependencyIndices": [
+        3,
+        6,
         7,
-        4,
-        8
+        2,
+        5,
+        0,
+        1,
+        4
       ]
     }
   ]

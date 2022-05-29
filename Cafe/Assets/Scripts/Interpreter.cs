@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml;
-using UnityEngine.UI;
 using TMPro;
 using DMData;
 public class Interpreter : Singleton<Interpreter>
@@ -13,20 +10,14 @@ public class Interpreter : Singleton<Interpreter>
     {
         get { return Instance.data; }
     }
-    void Start()
+    public static int CheckData
     {
-        //new DataManager().Init();
-        //data = ScriptableObject.CreateInstance<DataManager>();
-        //data.Init();
-        
-        DialogueManager.Instance.Init();
-        //img.sprite = data.Sections[0].character.sprite[0];
+        get { return IsData.Sections.Count;  }
     }
     private void Awake()
     {
         Load();
     }
-
     public void Save()
     {
         JsonController.InternalSaveJSON(DataPath, data);
@@ -36,13 +27,49 @@ public class Interpreter : Singleton<Interpreter>
     public void Load()
     {
         data = Instantiate(data);
-        //data.Init();
         data = JsonController.PopulateJSON(DataPath, data);
         Save();
     }
+    
+    public static bool Volume
+    {
+        set { IsData.MainM.volume = value; Instance.Save(); }
+        get { return IsData.MainM.volume; }
+    }
+    public static int Location
+    {
+        set { IsData.MainM.location = value; Instance.Save(); }
+        get { return IsData.MainM.location; }
+    }
+    public static string LevelCardsGame
+    {
+        set { IsData.MainM.lvlCardsGame = value; Instance.Save(); }
+        get { return IsData.MainM.lvlCardsGame; }
+    }
+    public static int LastResultCardsGame
+    {
+        set { IsData.MainM.lastResultCardsGame = value; Instance.Save(); }
+        get { return IsData.MainM.lastResultCardsGame; }
+    }
+    public static int LastResultNovella
+    {
+        set { IsData.MainM.lastResultNovella = value; Instance.Save(); }
+        get { return IsData.MainM.lastResultNovella; }
+    }
+    public static int BestResultCardsGame
+    {
+        set { IsData.MainM.bestResultCardsGame = value; Instance.Save(); }
+        get { return IsData.MainM.bestResultCardsGame; }
+    }
+    public static int BestResultNovella
+    {
+        set { IsData.MainM.bestResultNovella = value; Instance.Save(); }
+        get { return IsData.MainM.bestResultNovella; }
+    }
+
     public List<DataManager.Section> GetSection()
     {
-        return  IsData.Sections;
+        return IsData.Sections;
     }
     public DataManager.Section GetSection(int numSection)
     {

@@ -2,19 +2,15 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
 using UnityEngine;
-
-
 public class JsonController
 {
     public static void Save(string fileName, object savingObject)
     {
         var filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        using (var file = File.Open(filePath, FileMode.OpenOrCreate))
-        {
-            var bf = new BinaryFormatter();
-            bf.Serialize(file, savingObject);
-        }
+        using var file = File.Open(filePath, FileMode.OpenOrCreate);
+        var bf = new BinaryFormatter();
+        bf.Serialize(file, savingObject);
     }
 
     public static T Load<T>(string fileName, T defaultObject)
@@ -24,11 +20,9 @@ public class JsonController
 
         if (File.Exists(filePath))
         {
-            using (var file = File.Open(filePath, FileMode.Open))
-            {
-                var bf = new BinaryFormatter();
-                loadingObject = (T)bf.Deserialize(file);
-            }
+            using var file = File.Open(filePath, FileMode.Open);
+            var bf = new BinaryFormatter();
+            loadingObject = (T)bf.Deserialize(file);
         }
         else
         {

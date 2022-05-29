@@ -314,10 +314,21 @@
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/Card.cs"
+"Assets/Scripts/CardsManager.cs"
+"Assets/Scripts/ChooseUIManager.cs"
 "Assets/Scripts/DataManager.cs"
 "Assets/Scripts/DialogueManager.cs"
+"Assets/Scripts/DragCard.cs"
+"Assets/Scripts/DropCard.cs"
+"Assets/Scripts/GameManager.cs"
+"Assets/Scripts/GridController.cs"
 "Assets/Scripts/Interpreter.cs"
-"Assets/Scripts/UIManager.cs"
+"Assets/Scripts/JsonController.cs"
+"Assets/Scripts/LocationManager.cs"
+"Assets/Scripts/MenuUIManager.cs"
+"Assets/Scripts/ResultGameScript.cs"
+"Assets/Scripts/Singleton.cs"
 -langversion:9.0
 
 /deterministic

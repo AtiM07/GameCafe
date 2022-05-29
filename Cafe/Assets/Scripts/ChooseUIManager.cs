@@ -1,34 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
-
-
 public class ChooseUIManager : MonoBehaviour
 {
     public static ChooseUIManager Instance;
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
             Instance = this;
     }
+    [SerializeField]
+    private GameObject mainPanel;
+    [SerializeField]
+    private GameObject cardLvLPanel;
 
-    public GameObject mainPanel;
-    public GameObject cardLvLPanel;
-
-    public GameObject btnStart;
+    [SerializeField]
+    private GameObject startBtn;
 
     //toggle для кнопки выбора игры
-    public Toggle[] games;
+    [SerializeField]
+    private Toggle[] games;
 
     //toggle для кнопки выбора локации
-    public Toggle[] locations;
+    [SerializeField]
+    private Toggle[] locations;
 
     //toggle для кнопки выбора локации
-    public Toggle[] lvls;
+    [SerializeField]
+    private Toggle[] lvls;
 
     public void Play()
     {
@@ -36,34 +35,50 @@ public class ChooseUIManager : MonoBehaviour
         if (!mainPanel.activeSelf) mainPanel.SetActive(true);
 
         //скрывает кнопку старта
-        if (btnStart.activeSelf) btnStart.SetActive(false);
-
-        // скрывает панель выбора сложности карточной игры        
-        //if (!cardLvLPanel.activeSelf) cardLvLPanel.SetActive(true);
+        if (startBtn.activeSelf) startBtn.SetActive(false);
     }
 
-    public void MainOK()
+    public void MainOK() //передача стиля локации и переключение на игру
     {
-        //тут передается стиль локации и переключается на игру
-       
-
-        //foreach (Toggle toggle in games)
-        //    if (toggle.isOn) if (toggle.name == "tgglNovella") SceneManager.LoadScene("NovellaScene");
 
         foreach (Toggle toggle in locations)
-            if (toggle.isOn) Debug.Log(toggle.name);
+            if (toggle.isOn)
+            {
+                Interpreter.Location = int.Parse(toggle.name);
+            }
+
         foreach (Toggle toggle in games)
-            if (toggle.isOn) Debug.Log(toggle.name);
+            if (toggle.isOn)
+                if (toggle.name == "Novella") SceneManager.LoadScene("NovellaScene");
+                else
+                if (toggle.name == "CardsGame") //если выбрана карточная игра, то предложить выбор сложностиы
+                {
+                    mainPanel.SetActive(false);
+                    cardLvLPanel.SetActive(true);
+                }
 
-        // если быбрана карточная игра, то предложить выбор сложности
-        mainPanel.SetActive(false);
-        cardLvLPanel.SetActive(true);        
     }
-    public void LvlOK()
+    public void LvlOK() //передача сложности игры
     {
-        ////тут передается сложность игры
         foreach (Toggle toggle in lvls)
-            if (toggle.isOn) Debug.Log(toggle.name);
+            if (toggle.isOn)
+            {
+                Interpreter.LevelCardsGame = toggle.name;
+            }
+        SceneManager.LoadScene("CardGameScene");
+    }
 
+    [SerializeField]
+    private GameObject locationPanel;
+    [SerializeField]
+    private Image imageLocationPanel;
+    public void OpenImage(Image image)
+    {
+        locationPanel.SetActive(!locationPanel.activeSelf);
+        imageLocationPanel.sprite = image.sprite;
+    }
+    public void CloseImage()
+    {
+        locationPanel.SetActive(!locationPanel.activeSelf);
     }
 }

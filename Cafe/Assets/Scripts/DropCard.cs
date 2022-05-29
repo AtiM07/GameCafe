@@ -9,6 +9,14 @@ public class DropCard : MonoBehaviour, IDropHandler
     {
         var card = DragCard.selectedCard;
         if (card != null && transform.childCount == 0)
+        {
             card.transform.SetParent(transform);
+            card.GetComponent<Card>().Position = int.Parse(transform.gameObject.name);
+            if (card.GetComponent<Card>().OnDeck)
+            {
+                GameManager.Instance.numCellDesk -= 1;
+                card.GetComponent<Card>().OnDeck = false;
+            }
+        }
     }
 }
