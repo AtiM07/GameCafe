@@ -19,7 +19,6 @@ public class LocationManager : MonoBehaviour
 
         public Sprite resultBack;
         public Sprite btnBack;
-
     }
 
     [SerializeField]
@@ -67,6 +66,9 @@ public class LocationManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "NovellaScene")
         {
+            foreach (GameObject location in LocationsNovella)
+                location.SetActive(false);
+
             LocationsNovella[num].SetActive(true);
         }
 

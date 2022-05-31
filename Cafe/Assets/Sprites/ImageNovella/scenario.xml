@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <?xml-stylesheet type="text/css" href="style.css"?>
 <root>
     <section part="1">
@@ -6,31 +6,81 @@
         <song>музыка</song>
         <character name="Fairy">Фея леса</character>
         <dialogue num="1">
-          <phrase num="1" >Здравствуйте!</phrase>
-              <answer value="-1" nextphrase="4">Хай</answer>
-              <answer value="0" nextphrase="2">Здравствуйте</answer>
-              <answer value="1" nextphrase="2">Здравствуйте, рады вас приветствовать!</answer>
+          <phrase num="1"> Здравствуйте! Какое чудное заведение, все такое красивое и приятные официанты</phrase>
+              <answer value="-1" nextphrase="2">Привет</answer>
+              <answer value="0" nextphrase="3">Здравствуйте</answer>
+              <answer value="1" nextphrase="3">Добро пожаловать в наше кафе! Сегодня я ваш официант на вечер, уже решили, что будете заказывать?</answer>
           
-          <phrase num ="2">У вас есть свободные столики для двоих?</phrase>
-              <answer value="-1" nextphrase="4">А сами не видите?</answer>
-              <answer value="0" nextphrase="3">Да, проходите</answer>
-              <answer value="1" nextphrase="3">Да, конечно. *проводит до столика*</answer>
-          
-          <phrase num ="3">Мы бы хотели заказать две чашки черного чая и вишневый пирог.</phrase>
-              <answer value="-1" nextphrase="4">Ок</answer>
-              <answer value="0" nextphrase="0">Принято</answer>
-              <answer value="1" nextphrase="0">Да, конечно. Ваш заказ будет готов через 10 минут</answer>
+          <phrase num ="2">Неэтично с вашей стороны!</phrase>
+              <answer value="-1" nextphrase="0">Если вам что-то не нравится, то это не мои проблемы</answer>
+              <answer value="0" nextphrase="0">Извините</answer>
+              <answer value="1" nextphrase="0">Извините, больше такого не повторится</answer>   
 
-          <phrase num="4">Вам бы, желательно, подтянуть свои манеры. Мы пойдем</phrase>
-              <answer value="0" nextphrase="0">Ок</answer>
-              <answer value="1" nextphrase="0">Извините</answer>
-              <answer value="0" nextphrase="0">Выход там</answer>
+          <phrase num ="3">Я хотела бы заказать пасту “Ризотто”. Сколько мне ждать пасту по времени?</phrase>
+              <answer value="1" nextphrase="0">Конечно, ожидание составит примерно 20 минут</answer>
+              <answer value="-1" nextphrase="2">Не знаю</answer>
+              <answer value="0" nextphrase="0">Хорошо </answer>              
+         
+          <phrase num ="4">Вы можете, пожалуйста, помочь выбрать десерт? Я первый раз в вашем кафе</phrase>
+              <answer value="1" nextphrase="5">Я с радостью вам помогу в выборе. Могу посоветовать на свой вкус или вам хотелось чего-то определенного по вкусу?</answer>
+              <answer value="-1" nextphrase="5">Не могу помочь, так как недавно здесь и еще не знаю меню</answer>
+              <answer value="-1" nextphrase="2">Не советую вам десерты, вам они лишние! </answer> 
+
+          <phrase num ="5">Хочу попробовать что-то на ваш вкус</phrase>
+              <answer value="0" nextphrase="6">У нас все хорошо берут, берите любое - не прогадаете!</answer>
+              <answer value="1" nextphrase="6">Могу предложить вам мороженое «магия льда», оно очень популярно у нас в заведении. Думаю, вам понравится</answer>
+              <answer value="-1" nextphrase="0">У всех вкусы разные, не могу помочь </answer> 
+              
+          <phrase num ="6">Давайте мороженое «магия льда». Побуду феей льда и холода</phrase>
+              <answer value="1" nextphrase="7">Отличный выбор! Ожидайте</answer>
+              <answer value="0" nextphrase="7">Хорошо</answer>
+              <answer value="-1" nextphrase="7">Ага, понятно</answer> 
+
+          <phrase num ="7">Жду с нетерпением!</phrase>
+              <answer value="0" nextphrase="0">*молча кивает и улыбается*</answer>
+              <answer value="0" nextphrase="0">*молча уходит, никак не реагирует*</answer>
+              <answer value="0" nextphrase="0">Ожидание 10 минут *уходит*</answer> 
         </dialogue>
         <dialogue num="2">
-          <phrase num="1" >Можно меню?</phrase>
-            <answer value="-1" nextphrase="0">Сама возьми</answer>
-            <answer value="0" nextphrase="0">*молча отдает*</answer>
-            <answer value="1" nextphrase="0">Да, конечно. Одну секунду. *отдает меню*</answer>
+          <phrase num="1" >Можно мне меню?</phrase>
+            <answer value="-1" nextphrase="5">Держи</answer>
+            <answer value="1" nextphrase="0">Несколько секунд, пожалуйста, и меню уже окажется в ваших руках</answer>
+            <answer value="0" nextphrase="2">Возьмите, пожалуйста</answer>
+
+        <phrase num="2" >У меня к вам небольшая просьба. Я предпочитаю в блюдах пыльцу коры “древа правды”, вы сможете добавить ее в мое блюдо?</phrase>
+            <answer value="1" nextphrase="3">Я уточню на кухне этот вопрос, но, думаю, что да</answer>
+            <answer value="0" nextphrase="3">Да, это возможно сделать, какие еще пожелания?</answer>
+            <answer value="-1" nextphrase="5">Вы что?! Наш повар не будет таким заниматься, у нас тут не проходной двор!</answer>
+            
+        <phrase num="3" >Ох, вы очень любезны! Тогда можно мне салат «заклинание королевы» с пыльцой, которую я просила?</phrase>
+            <answer value="1" nextphrase="4">Да, ваш заказ будет готов в течение 15 минут</answer>
+            <answer value="0" nextphrase="4">Да</answer>
+            <answer value="-1" nextphrase="5">Ага, сделаем, как кухня освободится</answer>
+            
+        <phrase num="4">Жду с нетерпением! Подскажите, где у вас уборная, чтобы помыть руки?</phrase>
+            <answer value="1" nextphrase="6">Прямо до конца и направо. Первая дверь</answer>
+            <answer value="0" nextphrase="6">Прямо до конца. Там увидите сами</answer>
+            <answer value="-1" nextphrase="5">Не знаю</answer>
+            
+        <phrase num="5">Можно пообходительнее с вашими посетителями?!</phrase>
+            <answer value="1" nextphrase="2">Извините! Не знаю, что на меня нашло! Я внимательно вас слушаю</answer>
+            <answer value="0" nextphrase="0">Простите </answer>
+            <answer value="-1" nextphrase="0">НКак хочу, так и разговариваю!</answer>            
+            
+        <phrase num="6">Благодарю за подсказку!</phrase>
+            <answer value="1" nextphrase="7">Всегда рад помочь!</answer>
+            <answer value="0" nextphrase="7">Пожалуйста</answer>
+            <answer value="0" nextphrase="7">*молча кивает*</answer>
+
+        <phrase num="7">Хочу уточнить еще один момент. В вашем заведении возможна оплата безналичными или наличными може можно?</phrase>
+            <answer value="1" nextphrase="8">Да, безналичными оплата осуществляется, проблем не будет</answer>
+            <answer value="0" nextphrase="8">Да, можно и так, и так</answer>
+            <answer value="-1" nextphrase="5">Мне без разницы, я этим вопросом не занимаюсь</answer>
+
+        <phrase num="8">Отлично, мне была бы удобна безналичная оплата</phrase>
+            <answer value="1" nextphrase="0">Отлично *улыбается и кивает*</answer>
+            <answer value="0" nextphrase="0">Хорошо</answer>
+            <answer value="0" nextphrase="0">*молча уходит*</answer>
         </dialogue>
     </section>
     <section part="2">
@@ -38,17 +88,76 @@
       <song>музычка</song>
       <character name="Elf">Светлый эльф</character>
           <dialogue num="1">
-            <phrase num="1">Здравствуйте!</phrase>
-            <answer value="-1" nextphrase="0">Хай</answer>
-            <answer value="0" nextphrase="0">Привет</answer>
-            <answer value="1" nextphrase="0">Здравствуйте!</answer>
-          </dialogue>
-          <dialogue num="2">
-            <phrase num ="2" >Можно меню?</phrase>
-            <answer value="-1" nextphrase="0">Ага, ща</answer>
-            <answer value="0" nextphrase="0">*молча отет*</answer>
-            <answer value="1" nextphrase="0">Да, конечно</answer>
-          </dialogue>
-    
+            <phrase num="1">Добрый день. Могу я сделать заказ?</phrase>
+                <answer value="1" nextphrase="2">Добрый день, рады вас видеть! Конечно. Сегодня я буду вас обслуживать</answer>
+                <answer value="0" nextphrase="3">Здравствуйте</answer>
+                <answer value="-1" nextphrase="4">Приветики, ну, да, можете, я же здесь не просто так</answer>
+
+            <phrase num="2">Можно мне, пожалуйста, пару капель волшебного зелья и каменные кексы?</phrase>
+                <answer value="1" nextphrase="3">Да, конечно, отличный выбор! Я бы посоветовал к зелью пудинг. Они хорошо дополняют друг друга</answer>
+                <answer value="0" nextphrase="3">Хорошо</answer>
+                <answer value="-1" nextphrase="4">Ладно</answer>
+
+            <phrase num="3">Можно заказать еще на десерт пастуший пирог и рекомендованный вами Йоркширский пудинг?!</phrase>
+                <answer value="-1" nextphrase="4">Пирог вчерашний, не думаю, что вы будете в восторге от него</answer>
+                <answer value="0" nextphrase="5">Да</answer>
+                <answer value="1" nextphrase="5">Безусловно! Как можно скорее к вам прибудет ваш заказ!</answer>
+
+            <phrase num="4">Вам бы, подтянуть свои манеры. Мы ничего заказывать не будем!</phrase>
+                <answer value="-1" nextphrase="0">Ладно</answer>
+                <answer value="-1" nextphrase="0">Выход там</answer>
+                <answer value="1" nextphrase="0">Извините,я приму ваши замечания к сведению</answer>
+
+            <phrase num="5">У меня был день рождения на днях, можно ли мне сделать скидку, как постоянному клиенту?</phrase>
+                <answer value="1" nextphrase="6">Извините, но скидок мы не делаем. Можем подарить вам наш пирог с ягодами огненного древа</answer>
+                <answer value="0" nextphrase="7">Нет,скидок не делаем</answer>
+                <answer value="-1" nextphrase="8">Еще чего, может заплатить за вас еще?!</answer>
+
+            <phrase num="6">Ох,очень жаль. Но от тортика я не откажусь</phrase>
+                <answer value="1" nextphrase="0">Хорошо,тогда прежний заказ и дополнительно торт от заведения для вас будут готовы как можно скорее</answer>
+                <answer value="0" nextphrase="0">Хорошо</answer>
+                <answer value="0" nextphrase="0">Отлично.Ждите заказ, скоро будет!</answer>
+
+            <phrase num="7">Понятно, тогда жду свой заказ</phrase>
+                <answer value="1" nextphrase="0">*мило улыбается и уходит*</answer>
+                <answer value="1" nextphrase="0">Скоро будет сделано</answer>
+                <answer value="-1" nextphrase="0">*молча уходит, никак не реагирует*</answer>
+
+            <phrase num="8">Что вы себе позволяете?! Такое общение с гостями неприемлемо! Я был лучшего мнения об этом заведении!</phrase>
+                <answer value="-1" nextphrase="0">Вы тоже не подарок!</answer>
+                <answer value="0" nextphrase="0">*игнорирует*</answer>
+                <answer value="1" nextphrase="0">Извините</answer>
+          </dialogue>    
+  </section>
+  <section part="3">
+      <background>ссылочка</background>
+      <song>музычка</song>
+      <character name="Kikimora">Кикимора</character>
+          <dialogue num="1">
+            <phrase num="1">Здравствуйте!Я сегодня не в духе на болоте опять суматоха к предстоящему празднику!</phrase>
+                <answer value="1" nextphrase="2">Здравствуйте!Рады видеть вас в нашем заведении</answer>
+                <answer value="0" nextphrase="2">Привет </answer>
+                <answer value="1" nextphrase="2">Добрый день!</answer>
+
+            <phrase num="2">Можно у вас забронировать столик на банкет, на 30 человек?</phrase>
+                <answer value="1" nextphrase="3">Да, можно. Вас связать сразу с администратором или пока рано?</answer>
+                <answer value="0" nextphrase="3">Можно </answer>
+                <answer value="-1" nextphrase="4">Мне некогда, у меня и без вас много дел и заказов</answer>
+
+            <phrase num="3">Я хочу сразу посмотреть, каким отваром у вас тут кормят. Можно мне меню и побыстрее?!</phrase>
+                <answer value="1" nextphrase="5">Да, конечно. Одну секунду</answer>
+                <answer value="-1" nextphrase="4">Странная вы, конечно. Нормально кормят!</answer>
+                <answer value="0" nextphrase="5">Да</answer>
+
+            <phrase num="4">Поменяйте мне официанта и позовите мне главного! Вы относитесь неуважительно к главной кикиморе этого волшебного леса!</phrase>
+                <answer value="1" nextphrase="0">Прошу прощения, сейчас подойдет администратор и мы решим все возникшие вопросы</answer>
+                <answer value="0" nextphrase="0">Извините </answer>
+                <answer value="-1" nextphrase="0">До свидания</answer>
+
+            <phrase num="5">На банкете хочу меню с супом на плюще со свежими мухоморами и из напитков - красный грют</phrase>
+                <answer value="1" nextphrase="0">Хорошо </answer>
+                <answer value="1" nextphrase="0">Составим в соответствие с вашими пожеланиями</answer>
+                <answer value="0" nextphrase="0">*молча кивает*</answer>
+          </dialogue>    
   </section>
 </root>

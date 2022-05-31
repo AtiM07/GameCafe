@@ -38042,7 +38042,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JsonController_Load_TisRuntime
 		}
 	}
 	{
-		// using (var file = File.Open(filePath, FileMode.Open))
+		// using var file = File.Open(filePath, FileMode.Open);
 		String_t* L_5 = V_1;
 		FileStream_t07C7222EE10B75F352B89B76E60820160FF10AD8* L_6;
 		L_6 = File_Open_m9C6D5876B037A5A8341D216B767D4C8BE7084326(L_5, (int32_t)3, NULL);
@@ -38082,7 +38082,6 @@ IL_003d:
 			RuntimeObject* L_11;
 			L_11 = BinaryFormatter_Deserialize_mFC50E75F230189EB3660C8F2FD1E786C0D11E1ED(L_9, (Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE*)L_10, NULL);
 			V_0 = ((RuntimeObject*)Castclass((RuntimeObject*)L_11, il2cpp_rgctx_data(method->rgctx_data, 0)));
-			// }
 			goto IL_0045;
 		}// end try (depth: 1)
 		catch(Il2CppExceptionWrapper& e)
