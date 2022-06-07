@@ -383,6 +383,7 @@
 "Assets/Scripts/MenuUIManager.cs"
 "Assets/Scripts/ResultGameScript.cs"
 "Assets/Scripts/Singleton.cs"
+"Assets/Scripts/StatisticsJS.cs"
 "Assets/Scripts/Switch.cs"
 -langversion:9.0
 

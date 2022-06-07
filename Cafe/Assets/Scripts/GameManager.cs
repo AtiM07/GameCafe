@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timerTxt;
 
+    [SerializeField]
+    private GameObject resultPanel;
+
     private void Start()
     {
         CreateCard(6);
@@ -136,9 +139,9 @@ public class GameManager : MonoBehaviour
             else result -= 1;
 
         }
-        //if (result >= 6 && CheckCardsOnField()) ResultGameScript.Instance.ResultGame("You winner");
-        //else ResultGameScript.Instance.ResultGame("You lose");
-        
+
+
+        ResultGameScript.Instance.resultPanel = resultPanel;
         ResultGameScript.Instance.ResultGame(result);
     }
 
@@ -201,7 +204,7 @@ public class GameManager : MonoBehaviour
     {
         if (numCellDesk < 8)
         {
-            CreateCard(true);
+            CreateCard(false);
         }
     }
 }

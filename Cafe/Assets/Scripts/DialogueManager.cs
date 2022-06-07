@@ -5,6 +5,7 @@ using System.Xml;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -26,14 +27,15 @@ public class DialogueManager : MonoBehaviour
 
     private int _resultPoint;
 
+    [SerializeField]
+    private Image characterImg;
+    public string _character;
+
     /// <summary>
     /// Хранение кнопок с ответами
     /// </summary>/ 
     [SerializeField]
     private GameObject[] answer;
-
-    [SerializeField]
-    private GameObject background;
 
     private int _numSection =0, _numDialogue=0, _numPhrase=0;
 
@@ -46,21 +48,30 @@ public class DialogueManager : MonoBehaviour
         _numDialogue = Random.Range(0, Interpreter.Instance.GetDialogue(_numSection).Count);
 
         nameTxt.text = Interpreter.Instance.GetSection(_numSection).character.name;
+        _character = Interpreter.Instance.GetSection(_numSection).character.character;
+        SetImageCharacter();      
         _numPhrase = 0; _resultPoint = 0;
         DialogueGenerate();
     }
-    private void Start()
+    public Sprite[] sprites;
+    private void SetImageCharacter()
     {
+        foreach (Sprite sprite in sprites)
+            if (sprite.name == _character)
+                characterImg.sprite = sprite;
+    }
+    private void Start()
+    {       
         Init();
     }
-
+    
     private void DialogueGenerate()// Отображение диалога (фразы персонажа и вариантов ответа пользователя)
     {        
         phraseTxt.text = Interpreter.Instance.GetPhrase(_numSection, _numDialogue, _numPhrase).phrase;
 
         for (int i = 0; i < Interpreter.Instance.GetAnswer(_numSection, _numDialogue, _numPhrase).Count; i++)
         {
-            answer[i].GetComponentInChildren<TextMeshProUGUI>().text = Interpreter.Instance.GetAnswer(_numSection, _numDialogue, _numPhrase, i).answer; //answer[a].GetComponent<TextMeshProUGUI>().text += answers[a].AnswerText + "\n";
+            answer[i].GetComponentInChildren<TextMeshProUGUI>().text = Interpreter.Instance.GetAnswer(_numSection, _numDialogue, _numPhrase, i).answer;
         }
     }
 
@@ -112,4 +123,5 @@ public class DialogueManager : MonoBehaviour
         }
         yield return null;
     }
+
 }

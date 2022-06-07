@@ -28,10 +28,19 @@ public class Switch : MonoBehaviour
     }
     private void Change() //смена правил игры
     {
-        CheckNum();
+        num = CheckNum();
         foreach (GameObject rool in rools)
-            if (rool == rools[num]) rool.SetActive(true);
-            else rool.SetActive(false);
+            if (rool == rools[num])
+            {
+                Debug.Log(rool.name);
+                rool.SetActive(true);
+            }
+            else
+            {
+                rool.SetActive(false);
+            }
+            //if (rool == rools[num]) rool.SetActive(true);
+            //else rool.SetActive(false);
         ChangeBtn();
     }
     private int CheckNum()
@@ -44,18 +53,21 @@ public class Switch : MonoBehaviour
     {
         if (num == 0)
         {
+            Debug.Log("0");
             if (!rightBtn.activeSelf) rightBtn.SetActive(true);
             if (leftBtn.activeSelf) leftBtn.SetActive(false);
             rightTxt.text = "Общие правила >>";
         }
         else if (num == rools.Length-1)
         {
+            Debug.Log("2");
             if (!leftBtn.activeSelf) leftBtn.SetActive(true);
             if (rightBtn.activeSelf) rightBtn.SetActive(false);
             leftTxt.text = "<< Общие правила";
         }
         else if (num == ((rools.Length-1)/2))
         {
+            Debug.Log("1");
             if (!rightBtn.activeSelf) rightBtn.SetActive(true);
             if (!leftBtn.activeSelf) leftBtn.SetActive(true);
             rightTxt.text = "Карточная игра >>";

@@ -93,7 +93,7 @@ namespace DMData
                     {
                         Character character = new();
                         character.name = xmlElement.InnerText;
-                        character.sprite = (Sprite[])Resources.LoadAll<Sprite>("Novella/Characters/" + xmlElement.Attributes["name"].InnerText + "/");
+                        character.character = xmlElement.Attributes["name"].InnerText;
                         sections[^1].character = character;
                     }
                     //у фразы создаем экземпляр и записываем к последнему добавленному диалогу
@@ -164,15 +164,19 @@ namespace DMData
         }
         public class Character
         {
-            [JsonProperty("character")]
-            public string name;
+            [JsonProperty("character_engName")]
+            public string character;
 
-            public Sprite[] sprite;
+            [JsonProperty("name")]
+            public string name;
         }
         public class Main
         {
             [JsonProperty("volume")]
             public bool volume = true;
+
+            [JsonProperty("sound")]
+            public bool sound = true;
 
             [JsonProperty("selected_location")]
             public int location = 1;

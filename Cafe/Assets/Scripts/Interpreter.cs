@@ -36,6 +36,11 @@ public class Interpreter : Singleton<Interpreter>
         set { IsData.MainM.volume = value; Instance.Save(); }
         get { return IsData.MainM.volume; }
     }
+    public static bool Sound
+    {
+        set { IsData.MainM.sound = value; Instance.Save(); }
+        get { return IsData.MainM.sound; }
+    }
     public static int Location
     {
         set { IsData.MainM.location = value; Instance.Save(); }
@@ -102,4 +107,5 @@ public class Interpreter : Singleton<Interpreter>
         return IsData.Sections[numSection].dialogues[numDialogue].phrases[numPhrase].answers[numAnswer];
     }
 
+   
 }

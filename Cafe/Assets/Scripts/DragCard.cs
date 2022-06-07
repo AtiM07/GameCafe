@@ -34,3 +34,5 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         else transform.localPosition = Vector3.zero;
     }
 }
+
+

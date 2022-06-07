@@ -13,11 +13,11 @@ class MenuUIManager : MonoBehaviour
     [SerializeField]
     private Animator contentPanel;
     [SerializeField]
+    private Toggle volumeToggle;
+    [SerializeField]
     private Toggle soundToggle;
     [SerializeField]
     private GameObject rulesPanel;
-    [SerializeField]
-    private GameObject resultPanel;
 
     //изображения для меню
     [SerializeField]
@@ -32,16 +32,10 @@ class MenuUIManager : MonoBehaviour
     private Sprite volImg;
     [SerializeField]
     private Sprite muteImg;
-
-    //изображения для иконки текущей игры
     [SerializeField]
-    private Image game;
+    private Sprite soundImg;
     [SerializeField]
-    private Sprite gameImg;
-    [SerializeField]
-    private Sprite novImg;
-    [SerializeField]
-    private Sprite noneImg;
+    private Sprite unsoundImg;
 
     private void Start()
     {
@@ -53,8 +47,8 @@ class MenuUIManager : MonoBehaviour
         transform.anchoredPosition = position;
         rulesPanel.SetActive(false);
 
-        SpriteGame();
-        soundToggle.isOn = Interpreter.Volume;
+        soundToggle.isOn = Interpreter.Sound;
+        volumeToggle.isOn = Interpreter.Volume;
     }
 
     public void ToggleMenu()// Запускает анимацию выезжающей панели и смену изображения кнопки меню
@@ -64,6 +58,7 @@ class MenuUIManager : MonoBehaviour
     }
     private void SaveMenu()
     {
+        Interpreter.Volume = volumeToggle.isOn;
         Interpreter.Volume = soundToggle.isOn;
     }
     private IEnumerator AnimMenu()
@@ -91,44 +86,45 @@ class MenuUIManager : MonoBehaviour
             menu.sprite = menuImg;
         }       
     }
-    public void ToggleSound()// Включение/выключение звукового сопровождения 
+    public void ToggleVolume()// Включение/выключение звукового сопровождения 
     { 
-        if (soundToggle.isOn)
+        if (volumeToggle.isOn)
         {
-            soundToggle.gameObject.GetComponent<Image>().sprite = volImg;
+            volumeToggle.gameObject.GetComponent<Image>().sprite = volImg;
         }
         else
         {
-            soundToggle.gameObject.GetComponent<Image>().sprite = muteImg;
+            volumeToggle.gameObject.GetComponent<Image>().sprite = muteImg;
         }
 
-        Interpreter.Volume = soundToggle.isOn;
+        Interpreter.Volume = volumeToggle.isOn;
         //добавить отключение/включение звука
     }
-    public void SpriteGame()// Динамическое изменение изображения игры
+    public void ToggleSound()// Включение/выключение мелодии
     {
-        if (SceneManager.GetActiveScene().name == "NovellaScene")
+        if (soundToggle.isOn)
         {
-            game.sprite = novImg;
+            soundToggle.gameObject.GetComponent<Image>().sprite = soundImg;
         }
         else
-        if (SceneManager.GetActiveScene().name == "CardGameScene")
         {
-            game.sprite = gameImg;
+            soundToggle.gameObject.GetComponent<Image>().sprite = unsoundImg;
         }
-        else game.sprite = noneImg;
+        Interpreter.Sound = soundToggle.isOn;
     }
-    public void ToggleHelp() // Активирует панель с правилами игры
+    public void AnimPanel() // Активирует панель с правилами игры
     {
-        rulesPanel.SetActive(true);
+        rulesPanel.SetActive(!rulesPanel.activeSelf);
     }
     public void ClosePanel()// Деактивирует панель c правилами игры
     {
         rulesPanel.SetActive(false);
     }
-
     public void ExitMenu() //выход из игры
     {
+        if (SceneManager.GetActiveScene().name == "MainScene")
         Application.Quit();
+        else
+            SceneManager.LoadScene("MainScene");
     }
 }
